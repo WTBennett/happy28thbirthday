@@ -1,75 +1,267 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Liza</title>
+<title>LIZA 28</title>
 
-<link rel="stylesheet" href="style.css">
+<style>
+
+body{
+    margin:0;
+    background:#f5f5dc;
+    font-family:Chicago, Geneva, sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.window{
+    width:800px;
+    background:white;
+    border:3px solid black;
+    box-shadow:8px 8px 0px black;
+}
+
+.titlebar{
+    background:black;
+    color:white;
+    padding:10px;
+    font-weight:bold;
+}
+
+.content{
+    padding:30px;
+    text-align:center;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(8,50px);
+    gap:4px;
+    justify-content:center;
+    margin-top:20px;
+}
+
+.cell{
+    width:50px;
+    height:50px;
+    border:2px solid black;
+    background:#ddd;
+    cursor:pointer;
+    font-size:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.cell:hover{
+    background:#bbb;
+}
+
+#message{
+    display:none;
+}
+
+h1{
+    font-size:40px;
+}
+
+.boot{
+    font-size:18px;
+    line-height:1.6;
+}
+
+.photo{
+    width:250px;
+    margin:10px;
+    border:4px solid black;
+}
+
+button{
+    padding:15px 30px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+</style>
 </head>
 
 <body>
 
-<div id="landing">
+<div class="window">
 
-    <div class="gift-box" id="gift">
-        <h1>OPEN GIFT</h1>
-        <p>Click to reveal</p>
-    </div>
+<div class="titlebar">
+Apple Lisa System 1983
+</div>
+
+<div class="content" id="intro">
+
+<h1>LISA → LIZA</h1>
+
+<p class="boot">
+
+1983
+
+<br><br>
+
+Steve Jobs was 28 years old when the Apple Lisa launched.
+
+<br><br>
+
+2026
+
+<br><br>
+
+Liza is 28 years old today.
+
+<br><br>
+
+Coincidence?
+
+Probably.
+
+<br><br>
+
+To unlock your birthday message,
+find the hidden system file.
+
+</p>
+
+<div class="grid" id="grid"></div>
 
 </div>
 
-<div id="card">
+<div class="content" id="message">
 
-    <div class="message-container">
+<h1>🎉 HAPPY 28TH BIRTHDAY LIZA 🎉</h1>
 
-        <h1>HAPPY BIRTHDAY LIZA</h1>
+<p>
 
-        <div class="divider"></div>
+The Apple Lisa was revolutionary.
 
-        <p>
-            Today is all about celebrating one of my favourite people.
-        </p>
+But unlike the Apple Lisa...
 
-        <p>
-            Fun fact: when Steve Jobs was 28 years old, Apple released the
-            Lisa computer.
-        </p>
+you've aged much better.
 
-        <p>
-            Coincidence? I think not.
-        </p>
+<br><br>
 
-        <p>
-            Somewhere in an alternate timeline, Steve wasn't naming a computer.
-            He was simply predicting your arrival.
-        </p>
+Over the last 28 years you've become:
 
-        <p>
-            Fortunately your version comes with significantly better social
-            skills, fewer bugs, and much better design decisions.
-        </p>
+<br><br>
 
-        <p>
-            I hope this year brings you amazing adventures, unexpected
-            discoveries, and plenty of reasons to laugh.
-        </p>
+❤️ Kind
 
-        <p>
-            Whatever you end up doing, inventing, creating, discovering,
-            building, or accidentally stumbling into this year,
-            I'm excited to see it.
-        </p>
+<br>
 
-        <p class="signature">
-            Have the best birthday ❤️
-        </p>
+😂 Funny
 
-    </div>
+<br>
+
+🌟 Amazing
+
+<br>
+
+🍷 A professional wine enthusiast
+
+<br>
+
+🏆 One of my favourite humans
+
+<br><br>
+
+I hope this year brings you everything you deserve.
+
+<br><br>
+
+Happy Birthday ❤️
+
+</p>
+
+<br>
+
+<img src="photo1.jpg" class="photo">
+<img src="photo2.jpg" class="photo">
+
+<br><br>
+
+<button onclick="confetti()">
+Celebrate
+</button>
 
 </div>
 
-<script src="script.js"></script>
+</div>
+
+<script>
+
+const mineLocation = 0;
+
+const grid = document.getElementById("grid");
+
+for(let i=0;i<64;i++){
+
+const cell=document.createElement("div");
+
+cell.className="cell";
+
+cell.onclick=function(){
+
+if(i===mineLocation){
+
+document.getElementById("intro").style.display="none";
+document.getElementById("message").style.display="block";
+
+}else{
+
+cell.innerHTML="✓";
+cell.style.background="#aaa";
+
+}
+
+}
+
+grid.appendChild(cell);
+
+}
+
+function confetti(){
+
+for(let i=0;i<100;i++){
+
+let piece=document.createElement("div");
+
+piece.style.position="fixed";
+piece.style.left=Math.random()*100+"vw";
+piece.style.top="-10px";
+piece.style.width="10px";
+piece.style.height="10px";
+piece.style.background=
+`hsl(${Math.random()*360},100%,50%)`;
+
+piece.style.zIndex="9999";
+
+document.body.appendChild(piece);
+
+let fall=setInterval(()=>{
+
+piece.style.top=
+(parseInt(piece.style.top)+5)+"px";
+
+},20);
+
+setTimeout(()=>{
+
+clearInterval(fall);
+piece.remove();
+
+},3000);
+
+}
+
+}
+
+</script>
 
 </body>
 </html>

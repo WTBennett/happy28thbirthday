@@ -1,267 +1,129 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>LIZA 28</title>
-
-<style>
-
-body{
-    margin:0;
-    background:#f5f5dc;
-    font-family:Chicago, Geneva, sans-serif;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-}
-
-.window{
-    width:800px;
-    background:white;
-    border:3px solid black;
-    box-shadow:8px 8px 0px black;
-}
-
-.titlebar{
-    background:black;
-    color:white;
-    padding:10px;
-    font-weight:bold;
-}
-
-.content{
-    padding:30px;
-    text-align:center;
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(8,50px);
-    gap:4px;
-    justify-content:center;
-    margin-top:20px;
-}
-
-.cell{
-    width:50px;
-    height:50px;
-    border:2px solid black;
-    background:#ddd;
-    cursor:pointer;
-    font-size:20px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.cell:hover{
-    background:#bbb;
-}
-
-#message{
-    display:none;
-}
-
-h1{
-    font-size:40px;
-}
-
-.boot{
-    font-size:18px;
-    line-height:1.6;
-}
-
-.photo{
-    width:250px;
-    margin:10px;
-    border:4px solid black;
-}
-
-button{
-    padding:15px 30px;
-    font-size:18px;
-    cursor:pointer;
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple Lisa OS v28</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="window">
-
-<div class="titlebar">
-Apple Lisa System 1983
+<div id="boot-screen">
+    <div class="terminal">
+        <h1>APPLE LISA OS v28</h1>
+        <div id="boot-text"></div>
+    </div>
 </div>
 
-<div class="content" id="intro">
+<div id="game-screen" class="hidden">
 
-<h1>LISA → LIZA</h1>
+    <div class="window">
 
-<p class="boot">
+        <div class="title-bar">
+            APPLE LISA SYSTEM • USER: LIZA • AGE: 28
+        </div>
 
-1983
+        <div class="content">
 
-<br><br>
+            <h1>LISA → LIZA</h1>
 
-Steve Jobs was 28 years old when the Apple Lisa launched.
+            <p>
+                In 1983 Steve Jobs was 28 when the Apple Lisa launched.
+                <br><br>
+                Today Liza turns 28.
+                <br><br>
+                A hidden Birthday File has been detected.
+                <br>
+                Locate it before the system crashes.
+            </p>
 
-<br><br>
+            <div id="status">
+                Files Remaining: 8
+            </div>
 
-2026
+            <div id="board"></div>
 
-<br><br>
+        </div>
 
-Liza is 28 years old today.
-
-<br><br>
-
-Coincidence?
-
-Probably.
-
-<br><br>
-
-To unlock your birthday message,
-find the hidden system file.
-
-</p>
-
-<div class="grid" id="grid"></div>
-
-</div>
-
-<div class="content" id="message">
-
-<h1>🎉 HAPPY 28TH BIRTHDAY LIZA 🎉</h1>
-
-<p>
-
-The Apple Lisa was revolutionary.
-
-But unlike the Apple Lisa...
-
-you've aged much better.
-
-<br><br>
-
-Over the last 28 years you've become:
-
-<br><br>
-
-❤️ Kind
-
-<br>
-
-😂 Funny
-
-<br>
-
-🌟 Amazing
-
-<br>
-
-🍷 A professional wine enthusiast
-
-<br>
-
-🏆 One of my favourite humans
-
-<br><br>
-
-I hope this year brings you everything you deserve.
-
-<br><br>
-
-Happy Birthday ❤️
-
-</p>
-
-<br>
-
-<img src="photo1.jpg" class="photo">
-<img src="photo2.jpg" class="photo">
-
-<br><br>
-
-<button onclick="confetti()">
-Celebrate
-</button>
+    </div>
 
 </div>
 
+<div id="crash-screen" class="hidden">
+
+    <div class="window crash">
+
+        <h1>💣 SYSTEM FAILURE</h1>
+
+        <p>
+            Congratulations.
+            <br>
+            You clicked the wrong file.
+            <br><br>
+            Steve Jobs is disappointed.
+        </p>
+
+        <button onclick="restartGame()">
+            Restart System
+        </button>
+
+    </div>
+
 </div>
 
-<script>
+<div id="birthday-screen" class="hidden">
 
-const mineLocation = 0;
+    <div class="window birthday">
 
-const grid = document.getElementById("grid");
+        <h1>🎉 HAPPY 28TH BIRTHDAY LIZA 🎉</h1>
 
-for(let i=0;i<64;i++){
+        <p>
+            ACCESS GRANTED...
+            <br><br>
 
-const cell=document.createElement("div");
+            Birthday_File_28.exe successfully opened.
+            <br><br>
 
-cell.className="cell";
+            The Apple Lisa was revolutionary.
+            <br>
+            But unlike the Apple Lisa...
+            <br>
+            you've aged incredibly well.
+            <br><br>
 
-cell.onclick=function(){
+            Over the last 28 years you've collected:
+            <br><br>
 
-if(i===mineLocation){
+            ✓ Amazing memories
+            <br>
+            ✓ Great friends
+            <br>
+            ✓ Endless stories
+            <br>
+            ✓ A suspicious amount of wine knowledge
+            <br><br>
 
-document.getElementById("intro").style.display="none";
-document.getElementById("message").style.display="block";
+            Thank you for being one of my favourite humans.
+            <br><br>
 
-}else{
+            Here's to version 28.0.
+        </p>
 
-cell.innerHTML="✓";
-cell.style.background="#aaa";
+        <button id="celebrate">
+            Launch Celebration Protocol
+        </button>
 
-}
+        <div id="achievement">
+            Achievement Unlocked:
+            <br>
+            Found The Birthday File
+        </div>
 
-}
+    </div>
 
-grid.appendChild(cell);
+</div>
 
-}
-
-function confetti(){
-
-for(let i=0;i<100;i++){
-
-let piece=document.createElement("div");
-
-piece.style.position="fixed";
-piece.style.left=Math.random()*100+"vw";
-piece.style.top="-10px";
-piece.style.width="10px";
-piece.style.height="10px";
-piece.style.background=
-`hsl(${Math.random()*360},100%,50%)`;
-
-piece.style.zIndex="9999";
-
-document.body.appendChild(piece);
-
-let fall=setInterval(()=>{
-
-piece.style.top=
-(parseInt(piece.style.top)+5)+"px";
-
-},20);
-
-setTimeout(()=>{
-
-clearInterval(fall);
-piece.remove();
-
-},3000);
-
-}
-
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>

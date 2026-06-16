@@ -71,10 +71,35 @@ function showWin(){
 
         Today, Liza turns 28.<br><br>
 
-        One of those shaped computing history.<br>
-        The other is far more important.<br><br>
+        ACCESS GRANTED...
+            
 
-        Happy Birthday ❤️
+            Birthday_File_28.exe successfully opened.
+            
+
+            The Apple Lisa was revolutionary.
+           
+            But unlike the Apple Lisa...
+            
+            you've aged incredibly well.
+            
+
+            Over the last 28 years you've collected:
+            
+
+            ✓ Amazing memories
+            
+            ✓ Great friends
+            
+            ✓ Endless stories
+            
+            ✓ A suspicious amount of wine knowledge
+            
+
+            Thank you for being one of my favourite humans.
+            
+
+            Here's to version 28.0.
     `;
 }
 

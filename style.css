@@ -1,29 +1,26 @@
 body{
     margin:0;
-    background:#d9d2b6;
-    font-family:Geneva,Arial,sans-serif;
+    background:linear-gradient(135deg,#d8d2b6,#f4efd6);
+    font-family:Geneva,Arial;
     display:flex;
     justify-content:center;
     align-items:center;
-    min-height:100vh;
+    height:100vh;
 }
 
-.hidden{
-    display:none;
-}
+/* windows */
 
 .window{
-    width:900px;
-    max-width:95%;
-    background:#f8f4df;
+    width:850px;
+    background:#f8f3dd;
     border:4px solid #222;
     box-shadow:10px 10px 0 #222;
 }
 
-.title-bar{
+.bar{
     background:#222;
     color:white;
-    padding:15px;
+    padding:12px;
     font-weight:bold;
 }
 
@@ -32,79 +29,69 @@ body{
     text-align:center;
 }
 
-#board{
-    margin-top:25px;
-    display:grid;
-    grid-template-columns:repeat(8,60px);
-    gap:4px;
-    justify-content:center;
-}
-
-.cell{
-    width:60px;
-    height:60px;
-    background:#cfcfcf;
-    border:2px solid #444;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-weight:bold;
-    cursor:pointer;
-    user-select:none;
-}
-
-.cell:hover{
-    background:#bbbbbb;
-}
-
-.revealed{
-    background:white;
-}
-
-.mine{
-    background:#ff7777;
-}
+/* boot */
 
 .terminal{
-    text-align:left;
-    width:700px;
     background:black;
-    color:#4cff4c;
+    color:#33ff66;
     padding:40px;
+    width:700px;
     font-family:monospace;
 }
 
-#boot-text{
-    white-space:pre-line;
+.hidden{display:none}
+
+/* corners */
+
+.corners{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    width:220px;
+    margin:30px auto;
+    gap:15px;
 }
+
+.corner{
+    width:100px;
+    height:100px;
+    background:#ddd;
+    border:3px solid #444;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:30px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.corner:hover{
+    background:#bbb;
+    transform:scale(1.05);
+}
+
+.hint{
+    margin-top:20px;
+    font-style:italic;
+    color:#444;
+}
+
+/* fail */
 
 .crash{
-    text-align:center;
     padding:50px;
+    text-align:center;
 }
 
-.birthday{
-    text-align:center;
+/* win */
+
+.win{
     padding:40px;
+    text-align:center;
 }
 
 button{
-    margin-top:20px;
-    padding:15px 30px;
-    cursor:pointer;
+    padding:12px 25px;
     font-size:16px;
-}
-
-#achievement{
-    margin-top:25px;
-    padding:15px;
-    background:#fff7b0;
-    border:2px solid #222;
-}
-
-.confetti{
-    position:fixed;
-    width:10px;
-    height:10px;
-    top:-20px;
+    cursor:pointer;
+    margin-top:20px;
 }

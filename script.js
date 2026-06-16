@@ -1,211 +1,110 @@
 const bootLines = [
 "Booting Apple Lisa OS...",
-"Loading Birthday Protocol...",
-"Verifying User...",
-"User Found: LIZA",
-"Age Confirmed: 28",
+"Loading system memory...",
+"Checking time alignment...",
+"Steve Jobs age sync: OK",
+"Liza age sync: 28 CONFIRMED",
 "Searching for Birthday File...",
 "Ready."
 ];
 
-let line = 0;
+let i = 0;
+const bootText = document.getElementById("bootText");
 
-const bootText = document.getElementById("boot-text");
-
-function bootSequence(){
-
-    if(line < bootLines.length){
-
-        bootText.innerHTML += bootLines[line] + "\n";
-
-        line++;
-
-        setTimeout(bootSequence,700);
-
-    }else{
-
+function boot(){
+    if(i < bootLines.length){
+        bootText.textContent += bootLines[i] + "\n";
+        i++;
+        setTimeout(boot,600);
+    } else {
         setTimeout(()=>{
-
-            document.getElementById("boot-screen").classList.add("hidden");
-            document.getElementById("game-screen").classList.remove("hidden");
-
-            startGame();
-
-        },1000);
-
+            document.getElementById("boot").classList.add("hidden");
+            document.getElementById("game").classList.remove("hidden");
+        },800);
     }
-
 }
 
-bootSequence();
+boot();
 
-const size = 8;
+/* GAME LOGIC */
 
-let board = [];
+const corners = document.querySelectorAll(".corner");
 
-const normalMines = [
-9,14,21,37,42,50,61
-];
+/* ONLY ONE WINNING CORNER */
+const WINNING_CORNER = Math.floor(Math.random() * 4);
 
-const birthdayMine = 0;
+corners.forEach(c => {
+    c.addEventListener("click", () => {
 
-function startGame(){
+        const id = parseInt(c.dataset.id);
 
-    board=[];
-
-    const gameBoard = document.getElementById("board");
-
-    gameBoard.innerHTML="";
-
-    for(let i=0;i<64;i++){
-
-        const cell = document.createElement("div");
-
-        cell.className="cell";
-
-        cell.dataset.index=i;
-
-        cell.addEventListener("click",()=>clickCell(i,cell));
-
-        gameBoard.appendChild(cell);
-
-        board.push(cell);
-
-    }
-
-}
-
-function clickCell(index,cell){
-
-    if(cell.classList.contains("revealed")) return;
-
-    if(index===birthdayMine){
-
-        unlockBirthday();
-
-        return;
-
-    }
-
-    if(normalMines.includes(index)){
-
-        crash();
-
-        return;
-
-    }
-
-    cell.classList.add("revealed");
-
-    cell.textContent=countAdjacent(index);
-
-}
-
-function countAdjacent(index){
-
-    const row=Math.floor(index/size);
-    const col=index%size;
-
-    let count=0;
-
-    for(let r=-1;r<=1;r++){
-
-        for(let c=-1;c<=1;c++){
-
-            if(r===0 && c===0) continue;
-
-            const nr=row+r;
-            const nc=col+c;
-
-            if(
-                nr>=0 &&
-                nr<size &&
-                nc>=0 &&
-                nc<size
-            ){
-
-                const n=nr*size+nc;
-
-                if(normalMines.includes(n))
-                    count++;
-
-            }
-
+        if(id === WINNING_CORNER){
+            showWin();
+        } else {
+            showFail();
         }
 
-    }
-
-    return count===0 ? "" : count;
-
-}
-
-function crash(){
-
-    document.getElementById("game-screen").classList.add("hidden");
-    document.getElementById("crash-screen").classList.remove("hidden");
-
-}
-
-function restartGame(){
-
-    document.getElementById("crash-screen").classList.add("hidden");
-    document.getElementById("game-screen").classList.remove("hidden");
-
-    startGame();
-
-}
-
-function unlockBirthday(){
-
-    document.getElementById("game-screen").classList.add("hidden");
-
-    document.getElementById("birthday-screen").classList.remove("hidden");
-
-}
-
-document.addEventListener("click",(e)=>{
-
-    if(e.target.id==="celebrate"){
-
-        confetti();
-
-    }
-
+    });
 });
+
+function showFail(){
+
+    document.getElementById("game").classList.add("hidden");
+    document.getElementById("fail").classList.remove("hidden");
+
+    setTimeout(()=>{
+        document.getElementById("fail").classList.add("hidden");
+        document.getElementById("game").classList.remove("hidden");
+    },1200);
+
+}
+
+function showWin(){
+
+    document.getElementById("game").classList.add("hidden");
+    document.getElementById("win").classList.remove("hidden");
+
+    document.getElementById("message").innerHTML = `
+        In 1983, Apple released the Lisa computer.<br><br>
+
+        Steve Jobs turned 28 shortly after.<br><br>
+
+        Today, Liza turns 28.<br><br>
+
+        One of those shaped computing history.<br>
+        The other is far more important.<br><br>
+
+        Happy Birthday ❤️
+    `;
+}
+
+/* CONFETTI */
 
 function confetti(){
 
-    for(let i=0;i<150;i++){
+    for(let i=0;i<120;i++){
 
-        const piece=document.createElement("div");
+        const d = document.createElement("div");
 
-        piece.className="confetti";
+        d.style.position="fixed";
+        d.style.width="8px";
+        d.style.height="8px";
+        d.style.left=Math.random()*100+"vw";
+        d.style.top="-10px";
+        d.style.background=`hsl(${Math.random()*360},100%,50%)`;
 
-        piece.style.left=Math.random()*100+"vw";
+        document.body.appendChild(d);
 
-        piece.style.background=
-        `hsl(${Math.random()*360},100%,50%)`;
-
-        document.body.appendChild(piece);
-
-        let y=-20;
+        let y=-10;
 
         const fall=setInterval(()=>{
-
             y+=5;
-
-            piece.style.top=y+"px";
-
+            d.style.top=y+"px";
         },20);
 
         setTimeout(()=>{
-
             clearInterval(fall);
-
-            piece.remove();
-
-        },4000);
-
+            d.remove();
+        },3000);
     }
-
 }

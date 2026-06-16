@@ -70,34 +70,29 @@ function showWin(){
         Steve Jobs turned 28 shortly after.<br><br>
 
         Today, Liza turns 28.<br><br>
-
-        ACCESS GRANTED...
+          
             
-
-            Birthday_File_28.exe successfully opened.
-            
-
             The Apple Lisa was revolutionary.
-           
+            <br>
             But unlike the Apple Lisa...
-            
+            <br>
             you've aged incredibly well.
-            
+            <br><br>
 
             Over the last 28 years you've collected:
-            
+            <br><br>
 
             ✓ Amazing memories
-            
+            <br>
             ✓ Great friends
-            
+            <br>
             ✓ Endless stories
-            
+            <br>
             ✓ A suspicious amount of wine knowledge
-            
+            <br><br>
 
             Thank you for being one of my favourite humans.
-            
+            <br><br>
 
             Here's to version 28.0.
     `;

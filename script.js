@@ -65,12 +65,7 @@ function showWin(){
     document.getElementById("win").classList.remove("hidden");
 
     document.getElementById("message").innerHTML = `
-        In 1983, Apple released the Lisa computer.<br><br>
-
-        Steve Jobs turned 28 shortly after.<br><br>
-
-        Today, Liza turns 28.<br><br>
-          
+        
             
             The Apple Lisa was revolutionary.
             <br>
@@ -88,13 +83,13 @@ function showWin(){
             <br>
             ✓ Endless stories
             <br>
-            ✓ A suspicious amount of wine knowledge
+            ✓ A huge amount of coffee knowledge
             <br><br>
 
             Thank you for being one of my favourite humans.
             <br><br>
 
-            Here's to version 28.0.
+            Here's to version 28.0. please go and make it as amazing as the last 27 years!!
     `;
 }
 
